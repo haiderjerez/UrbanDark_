@@ -56,10 +56,19 @@ document.querySelectorAll('.product-card').forEach(card => {
 
 // Add loading animation for images
 document.querySelectorAll('img').forEach(img => {
+    console.log('Attempting to load image:', img.src);
     img.style.opacity = '0';
     img.addEventListener('load', () => {
+        console.log('Successfully loaded image:', img.src);
         img.style.transition = 'opacity 0.5s ease';
         img.style.opacity = '1';
+    });
+    img.addEventListener('error', (e) => {
+        console.error('Error loading image:', img.src);
+        console.error('Image element:', img);
+        img.style.border = '2px solid red';
+        img.alt = 'Error loading image: ' + img.src;
+        img.title = 'Error loading image: ' + img.src;
     });
 });
 
